@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notre Menu - Sogno</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <h2>Notre Menu</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+      <% if (products && products.length) { %>
+        <% products.forEach(function(product) { %>
+          <div style="background:#fffbe6;border-radius:10px;box-shadow:0 2px 8px rgba(166,124,82,0.08);padding:1rem;max-width:260px;min-width:200px;text-align:center;">
+            <img src="<%= product.image %>" alt="<%= product.name %>" style="width:100%;max-width:200px;border-radius:8px;" loading="lazy">
+            <h3 style="margin:0.5rem 0 0.2rem 0;"> <%= product.name %> </h3>
+            <p style="margin:0.2rem 0;"> <%= product.description %> </p>
+            <div style="font-weight:bold;color:#a67c52;"> <%= product.price %> DH </div>
+            <div style="font-size:0.9em;color:#a67c52;margin-top:0.3rem;">
+              Allergènes : <%= product.allergens.join(', ') %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>Menu en cours de chargement...</p>
+      <% } %>
+    </div>
+  </main>
+  <%- include('partials/footer') %>
+</body>
+</html> 

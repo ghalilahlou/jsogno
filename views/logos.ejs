@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logos Animés - Sogno</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    @keyframes rotate {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+    .logo-anim {
+      animation: rotate 3s linear infinite;
+      transition: transform 0.3s;
+      width: 120px;
+      margin: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(166,124,82,0.08);
+      background: #fffbe6;
+      padding: 0.5rem;
+    }
+    .logo-anim:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+    .logo-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <h2>Nos logos animés</h2>
+    <div class="logo-gallery">
+      <% logos.forEach(function(logo) { %>
+        <img src="<%= logo.path %>" alt="<%= logo.alt %>" class="logo-anim">
+      <% }) %>
+    </div>
+  </main>
+  <%- include('partials/footer') %>
+</body>
+</html> 

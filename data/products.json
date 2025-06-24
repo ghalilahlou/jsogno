@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Tiramisu Classique",
+    "description": "Le traditionnel tiramisu italien, mascarpone, café, cacao.",
+    "price": 35,
+    "allergens": ["lait", "œuf", "gluten"],
+    "image": "/images/tiramisu-classique.webp"
+  },
+  {
+    "name": "Tiramisu Pistache",
+    "description": "Tiramisu revisité à la pistache, éclats de pistache grillée.",
+    "price": 40,
+    "allergens": ["lait", "œuf", "gluten", "fruits à coque"],
+    "image": "/images/tiramisu-pistache.webp"
+  }
+] 
