@@ -1,11 +1,24 @@
 <header>
   <nav>
-    <ul style="list-style:none;display:flex;justify-content:center;gap:2rem;padding:0;margin:0;">
-      <li><a href="/" style="color:#fffbe6;text-decoration:none;font-weight:bold;">Accueil</a></li>
-      <li><a href="/menu" style="color:#fffbe6;text-decoration:none;font-weight:bold;">Menu</a></li>
-      <li><a href="/contact" style="color:#fffbe6;text-decoration:none;font-weight:bold;">Contact</a></li>
+    <button id="burger-btn" aria-label="Ouvrir le menu" aria-controls="main-nav" aria-expanded="false">
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+    </button>
+    <ul id="main-nav">
+      <li><a href="/" class="animate-fade-in"><%= typeof t !== 'undefined' && t.nav ? t.nav.home : 'Accueil' %></a></li>
+      <li><a href="/menu" class="animate-fade-in-delay-1"><%= typeof t !== 'undefined' && t.nav ? t.nav.menu : 'Menu' %></a></li>
+      <li><a href="/histoire" class="animate-fade-in-delay-2"><%= typeof t !== 'undefined' && t.nav ? t.nav.story : 'Notre Histoire' %></a></li>
+      <li><a href="/contact" class="animate-fade-in-delay-3"><%= typeof t !== 'undefined' && t.nav ? t.nav.contact : 'Contact' %></a></li>
+      <li>
+        <div class="language-selector">
+          <a href="?lang=fr" class="<%= typeof lang !== 'undefined' && lang === 'fr' ? 'active' : '' %>" aria-label="Français">FR</a>
+          <span>|</span>
+          <a href="?lang=en" class="<%= typeof lang !== 'undefined' && lang === 'en' ? 'active' : '' %>" aria-label="Anglais">EN</a>
+        </div>
+      </li>
     </ul>
   </nav>
-  <img src="/images/songo.jpeg" alt="Logo Sogno" style="width:120px;display:block;margin:1rem auto 0.5rem auto;">
-  <h1>Sogno - Magasin de Tiramisu</h1>
+  <img src="/images/songo.jpeg" alt="Logo Sogno" class="animate-scale-in">
+  <h1 class="animate-fade-in">Sogno - Spécialiste du Tiramisu</h1>
 </header> 

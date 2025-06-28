@@ -1,17 +1,25 @@
 {
   "name": "jsogno",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Site web moderne pour Sogno - Magasin de Tiramisu à Casablanca",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "tiramisu",
+    "casablanca",
+    "pâtisserie",
+    "italien",
+    "restaurant",
+    "dessert"
+  ],
+  "author": "Sogno Team",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
@@ -19,5 +27,17 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/jsogno.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/jsogno/issues"
+  },
+  "homepage": "https://sogno.ma"
 }

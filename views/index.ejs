@@ -1,16 +1,406 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<%= typeof lang !== 'undefined' ? lang : 'fr' %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  <link rel="stylesheet" href="/css/style.css">
+  <meta name="description" content="Sogno - Le paradis du tiramisu à Casablanca. Découvrez nos tiramisus authentiques préparés avec passion.">
+  <meta name="keywords" content="tiramisu, casablanca, pâtisserie, italien, dessert">
+  <meta name="author" content="Sogno">
+  <title><%= typeof t !== 'undefined' && t.home ? t.home.title : 'Sogno - Spécialiste du Tiramisu' %></title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Animations enrichies */
+    .hero-section {
+      background: rgba(255,255,255,0.10);
+      backdrop-filter: blur(10px);
+      color: var(--beige);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 32px rgba(122,59,46,0.10);
+    }
+    
+    .hero-section::before {
+      content: none;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .logo-hero-artistique {
+      animation: logoEntrance 1.5s ease-out;
+      margin-bottom: 2rem;
+    }
+    
+    @keyframes logoEntrance {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px) rotate(-10deg);
+      }
+      50% {
+        transform: scale(1.1) translateY(-10px) rotate(5deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0deg);
+      }
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: titleSlide 1s ease-out 0.5s both;
+    }
+    
+    @keyframes titleSlide {
+      0% {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      animation: subtitleFade 1s ease-out 0.8s both;
+    }
+    
+    @keyframes subtitleFade {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 0.9;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Section contact dynamique */
+    .contact-section {
+      background: linear-gradient(135deg, var(--beige-light) 0%, var(--white) 100%);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 30%, rgba(230,184,0,0.1) 50%, transparent 70%);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .contact-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      border: 1px solid rgba(230,184,0,0.2);
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(230,184,0,0.2);
+      border-color: var(--gold);
+    }
+    
+    .contact-icon {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      transition: transform var(--transition);
+    }
+    
+    .contact-card:hover .contact-icon {
+      transform: scale(1.2) rotate(10deg);
+    }
+    
+    .contact-info h3 {
+      color: var(--bordeaux);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+    
+    .contact-info p, .contact-info a {
+      color: var(--gray);
+      text-decoration: none;
+      margin: 0.3rem 0;
+      transition: color var(--transition);
+    }
+    
+    .contact-info a:hover {
+      color: var(--gold);
+    }
+    
+    /* Boutons d'action rapide */
+    .quick-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--bordeaux-dark);
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition);
+      box-shadow: 0 4px 12px rgba(230,184,0,0.3);
+    }
+    
+    .action-btn:hover {
+      background: var(--bordeaux);
+      color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(122,59,46,0.3);
+    }
+    
+    .action-btn i {
+      font-size: 1.1rem;
+    }
+    
+    /* Animations des sections */
+    .section {
+      animation: fadeInUp 0.8s ease-out;
+      animation-fill-mode: both;
+    }
+    
+    .section:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .section:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .quick-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .action-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      /* Responsive pour la section visite */
+      .visit-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      
+      .visit-info {
+        order: 2;
+      }
+      
+      .visit-address {
+        order: 1;
+      }
+    }
+  </style>
 </head>
 <body>
   <%- include('partials/header') %>
-  <main>
-    <p>Bienvenue chez Sogno, le paradis du tiramisu à Casablanca !</p>
+  
+  <main class="container">
+    <!-- Section Hero -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="logo-hero-artistique">
+          <div class="logo-circle">
+            <img src="/images/songo.jpeg" alt="Logo Sogno" />
+          </div>
+        </div>
+        <h1 class="hero-title">Le Paradis du Tiramisu</h1>
+        <p class="hero-subtitle">Découvrez l'authenticité italienne à Casablanca</p>
+      </div>
+    </section>
+    
+    <!-- Section Histoire -->
+    <section class="section">
+      <h2><%= typeof t !== 'undefined' && t.home ? t.home.intro_title : 'Notre Histoire : Une Passion Familiale' %></h2>
+      <p style="max-width:700px;margin:0 auto;font-size:1.1rem;line-height:1.8;">
+        <%= typeof t !== 'undefined' && t.home ? t.home.intro_text : "Chez Sogno, chaque tiramisu est une histoire de famille et de passion. Héritiers d'un savoir-faire italien transmis de génération en génération, nous perpétuons la tradition avec des gestes authentiques et des ingrédients soigneusement sélectionnés. Ici, tout est fait maison, avec patience et amour, pour vous offrir un dessert unique, sincère et généreux. Notre promesse ? Un tiramisu qui a du cœur, préparé sans compromis, pour créer des souvenirs gourmands et des moments de bonheur à partager." %>
+      </p>
+    </section>
+    
+    <!-- Section Nous Trouver (fusionnée) -->
+    <section id="contact" class="section">
+      <h2 style="text-align:center;margin-bottom:2rem;color:var(--bordeaux);">
+        <i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:0.5rem;"></i>
+        Nous Trouver
+      </h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:1000px;margin:0 auto;">
+        <!-- Colonne gauche : adresse, horaires, Google Maps, réseaux sociaux -->
+        <div style="text-align:center;">
+          <div style="background:rgba(230,184,0,0.08);padding:2rem;border-radius:var(--radius);border:2px solid var(--gold);margin-bottom:1.5rem;">
+            <i class="fas fa-map-marker-alt" style="font-size:2.2rem;color:var(--gold);margin-bottom:1rem;"></i>
+            <h3 style="color:var(--bordeaux);margin-bottom:0.5rem;">Notre Adresse</h3>
+            <p style="font-size:1.1rem;margin-bottom:0.5rem;">
+              <%= typeof t !== 'undefined' && t.home ? t.home.visit_address : '123 Rue du Tiramisu, Casablanca' %>
+            </p>
+            <p style="color:var(--gray);">
+              <i class="fas fa-clock" style="margin-right:0.5rem;"></i>
+              <%= typeof t !== 'undefined' && t.home ? t.home.visit_hours : 'Lun-Dim : 10h - 22h' %>
+            </p>
+            <div style="margin:1.5rem 0;">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d831.023099895!2d-7.649086071489283!3d33.57695011566011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzPCsDM0JzM3LjAiTiA3wrAzOCc1NC40Ilc!5e0!3m2!1sen!2sma!4v1751074362018!5m2!1sen!2sma" width="100%" height="300" style="border-radius:12px;border:1px solid #e6b800;min-width:220px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=33.5770068,-7.6485094" target="_blank" rel="noopener noreferrer" class="btn" style="font-size:1.1rem;padding:1rem 2rem;display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.7rem;background:var(--gold);color:var(--bordeaux-dark);border:2px solid var(--gold);">
+              <i class="fas fa-route"></i>
+              Itinéraire
+            </a>
+            <a href="https://www.google.com/maps/@33.5770068,-7.6485094,21z?hl=fr&entry=ttu&g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn" 
+               style="font-size:1.1rem;padding:1rem 2rem;display:inline-flex;align-items:center;gap:0.5rem;margin-top:0.7rem;">
+              <i class="fas fa-external-link-alt"></i>
+              <%= typeof t !== 'undefined' && t.home ? t.home.visit_map : 'Voir sur Google Maps' %>
+            </a>
+          </div>
+          <div class="footer-socials" style="margin-top:2.5rem;display:flex;justify-content:center;gap:2.2rem;">
+            <a href="https://wa.me/212600000000" target="_blank" rel="noopener" aria-label="WhatsApp" style="font-size:2.3rem;color:#25D366;"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/sogno.ma?igsh=Yzg4am0yb3J4eGVu&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram" style="font-size:2.3rem;color:#E4405F;"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok" style="font-size:2.3rem;color:#000;"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        <!-- Colonne droite : infos pratiques et contacts -->
+        <div style="background:rgba(255,255,255,0.1);padding:2rem;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.2);">
+          <h3 style="color:var(--bordeaux);margin-bottom:1rem;text-align:center;">
+            <i class="fas fa-info-circle" style="color:var(--gold);margin-right:0.5rem;"></i>
+            Comment nous trouver
+          </h3>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="margin-bottom:1rem;padding-left:2rem;position:relative;">
+              <i class="fas fa-car" style="color:var(--gold);position:absolute;left:0;top:0.2rem;"></i>
+              <strong>En voiture :</strong> Parking disponible à proximité
+            </li>
+            <li style="margin-bottom:1rem;padding-left:2rem;position:relative;">
+              <i class="fas fa-bus" style="color:var(--gold);position:absolute;left:0;top:0.2rem;"></i>
+              <strong>En transport :</strong> Ligne de bus 15, arrêt "Tiramisu"
+            </li>
+            <li style="margin-bottom:1rem;padding-left:2rem;position:relative;">
+              <i class="fas fa-walking" style="color:var(--gold);position:absolute;left:0;top:0.2rem;"></i>
+              <strong>À pied :</strong> 5 minutes du centre-ville
+            </li>
+            <li style="padding-left:2rem;position:relative;">
+              <i class="fas fa-star" style="color:var(--gold);position:absolute;left:0;top:0.2rem;"></i>
+              <strong>Facile à repérer :</strong> Notre enseigne dorée vous guidera
+            </li>
+          </ul>
+          <div style="margin-top:2.5rem;">
+            <div class="contact-card" style="background:transparent;box-shadow:none;border:none;padding:0;text-align:left;">
+              <div class="contact-info">
+                <h3 style="color:var(--bordeaux);margin-bottom:0.5rem;">Téléphone</h3>
+                <a href="tel:+212600000000" style="color:var(--gold);font-size:1.1rem;font-weight:600;">+212 6 00 00 00 00</a>
+                <p style="color:var(--gray);margin-bottom:0.7rem;">Appel direct</p>
+                <h3 style="color:var(--bordeaux);margin-bottom:0.5rem;">Email</h3>
+                <a href="mailto:contact@sogno.ma" style="color:var(--gold);font-size:1.1rem;font-weight:600;">contact@sogno.ma</a>
+                <p style="color:var(--gray);margin-bottom:0.7rem;">Réponse rapide</p>
+                <h3 style="color:var(--bordeaux);margin-bottom:0.5rem;">Horaires</h3>
+                <p style="color:var(--gray);">Lundi - Dimanche</p>
+                <p style="color:var(--gray);">10h00 - 22h00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+  
   <%- include('partials/footer') %>
+  
+  <!-- Script d'animations enrichi -->
+  <script src="/js/animations.js" defer></script>
+
+  <!-- Boutons flottants réseaux sociaux et remonter en haut -->
+  <div class="floating-social">
+    <a href="https://wa.me/212600000000" target="_blank" aria-label="WhatsApp" class="floating-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://instagram.com/" target="_blank" aria-label="Instagram" class="floating-btn instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://tiktok.com/" target="_blank" aria-label="TikTok" class="floating-btn tiktok"><i class="fab fa-tiktok"></i></a>
+    <a href="#" id="scrollTopBtn" aria-label="Remonter en haut" class="floating-btn scrolltop"><i class="fas fa-arrow-up"></i></a>
+  </div>
+  <script>
+    // Afficher/Masquer le bouton remonter en haut
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', function() {
+      if(window.scrollY > 300) {
+        scrollBtn.style.opacity = 1;
+        scrollBtn.style.pointerEvents = 'auto';
+      } else {
+        scrollBtn.style.opacity = 0;
+        scrollBtn.style.pointerEvents = 'none';
+      }
+    });
+    scrollBtn.onclick = function(e) {
+      e.preventDefault();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  </script>
 </body>
 </html> 

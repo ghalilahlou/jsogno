@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<%= typeof lang !== 'undefined' ? lang : 'fr' %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mentions légales - Sogno</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title><%= typeof t !== 'undefined' && t.legal ? t.legal.title : 'Mentions légales - Sogno' %></title>
+  <link rel="stylesheet" href="/css/global.css">
+  <script src="/js/animations.js" defer></script>
 </head>
 <body>
   <%- include('partials/header') %>
-  <main>
-    <h2>Mentions légales</h2>
-    <p>Informations légales à compléter.</p>
+  <main class="container animate-fade-in">
+    <section class="section" style="max-width:800px;margin:2rem auto;">
+      <h2 style="text-align:center;"> <%= typeof t !== 'undefined' && t.legal ? t.legal.title : 'Mentions légales' %> </h2>
+      <!-- Contenu des mentions légales ici -->
+      <p>Ce site est édité par Sogno - Spécialiste du Tiramisu, Casablanca. Pour toute question, contactez-nous à <a href="mailto:contact@sogno.ma">contact@sogno.ma</a>.</p>
+      <!-- Ajoutez ici le reste du contenu légal -->
+    </section>
   </main>
   <%- include('partials/footer') %>
 </body>

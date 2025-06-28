@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<%= typeof lang !== 'undefined' ? lang : 'fr' %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notre Menu - Sogno</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title><%= typeof t !== 'undefined' && t.home ? t.home.menu_title : 'Notre Menu - Sogno' %></title>
+  <link rel="stylesheet" href="/css/global.css">
+  <script src="/js/animations.js" defer></script>
 </head>
 <body>
   <%- include('partials/header') %>
-  <main>
-    <h2>Notre Menu</h2>
-    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+  <main class="container animate-fade-in">
+    <h2 class="section" style="text-align:center; margin-bottom:2rem;"><%= typeof t !== 'undefined' && t.home ? t.home.menu_title : 'Notre Menu' %></h2>
+    <div class="menu-list">
       <% if (products && products.length) { %>
         <% products.forEach(function(product) { %>
-          <div style="background:#fffbe6;border-radius:10px;box-shadow:0 2px 8px rgba(166,124,82,0.08);padding:1rem;max-width:260px;min-width:200px;text-align:center;">
-            <img src="<%= product.image %>" alt="<%= product.name %>" style="width:100%;max-width:200px;border-radius:8px;" loading="lazy">
-            <h3 style="margin:0.5rem 0 0.2rem 0;"> <%= product.name %> </h3>
-            <p style="margin:0.2rem 0;"> <%= product.description %> </p>
-            <div style="font-weight:bold;color:#a67c52;"> <%= product.price %> DH </div>
-            <div style="font-size:0.9em;color:#a67c52;margin-top:0.3rem;">
-              Allergènes : <%= product.allergens.join(', ') %>
-            </div>
+          <div class="menu-item animate-fade-in">
+            <img src="<%= product.image %>" alt="<%= product.name %>" style="max-width:180px; border-radius:16px; margin-bottom:1rem; background:#fff;">
+            <h3><%= product.name %></h3>
+            <p style="font-size:1rem; color:#7a3b2e; margin-bottom:0.5rem; white-space:pre-line;"><%= product.description %></p>
+            <div class="price" style="margin-bottom:0.5rem;"><%= product.price %> DH</div>
+            <div class="allergens" style="font-size:0.9rem; color:#666;">Allergènes : <%= product.allergens.join(', ') %></div>
           </div>
         <% }) %>
       <% } else { %>

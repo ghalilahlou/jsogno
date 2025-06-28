@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<%= typeof lang !== 'undefined' ? lang : 'fr' %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Politique de confidentialité - Sogno</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title><%= typeof t !== 'undefined' && t.legal ? t.legal.privacy_title : 'Politique de confidentialité - Sogno' %></title>
+  <link rel="stylesheet" href="/css/global.css">
+  <script src="/js/animations.js" defer></script>
 </head>
 <body>
   <%- include('partials/header') %>
-  <main>
-    <h2>Politique de confidentialité</h2>
-    <p>Politique de confidentialité à compléter.</p>
+  <main class="container animate-fade-in">
+    <section class="section" style="max-width:800px;margin:2rem auto;">
+      <h2 style="text-align:center;"> <%= typeof t !== 'undefined' && t.legal ? t.legal.privacy_title : 'Politique de confidentialité' %> </h2>
+      <!-- Contenu de la politique de confidentialité ici -->
+      <p>Nous respectons votre vie privée. Pour toute question concernant vos données, contactez-nous à <a href="mailto:contact@sogno.ma">contact@sogno.ma</a>.</p>
+      <!-- Ajoutez ici le reste du contenu confidentialité -->
+    </section>
   </main>
   <%- include('partials/footer') %>
 </body>

@@ -1,16 +1,30 @@
 [
   {
-    "name": "Tiramisu Classique",
-    "description": "Le traditionnel tiramisu italien, mascarpone, café, cacao.",
+    "name": "Tiramisu Classique au Café",
+    "description": "Le Grand Classique - Tiramisu Traditionnel\nUn voyage gourmand en Italie avec notre tiramisu authentique. Couches onctueuses de mascarpone crémeux, biscuits à la cuillère imbibés d'espresso corsé, et ce subtil équilibre entre amertume du café et douceur du dessert. Saupoudré de cacao pur, chaque cuillerée révèle la perfection de cette recette intemporelle.",
     "price": 35,
     "allergens": ["lait", "œuf", "gluten"],
-    "image": "/images/tiramisu-classique.webp"
+    "image": "/images/cafe.png"
+  },
+  {
+    "name": "Tiramisu Citron",
+    "description": "Fraîcheur Méditerranéenne - Tiramisu au Citron\nUne interprétation ensoleillée du classique italien ! Notre tiramisu au citron marie la fraîcheur acidulée des agrumes à la richesse du mascarpone. Zestes de citron confits et crème onctueuse s'harmonisent pour créer un dessert léger et rafraîchissant, parfait pour les palais en quête d'évasion.",
+    "price": 38,
+    "allergens": ["lait", "œuf", "gluten"],
+    "image": "/images/citron.png"
   },
   {
     "name": "Tiramisu Pistache",
-    "description": "Tiramisu revisité à la pistache, éclats de pistache grillée.",
+    "description": "Élégance Verte - Tiramisu à la Pistache\nL'art pâtissier à la française rencontre la tradition italienne. Notre tiramisu à la pistache séduit par sa couleur jade naturelle et son goût délicat de pistaches de Sicile. Couches alternées de crème à la pistache et mascarpone, sublimées par un croquant de pistaches concassées.",
     "price": 40,
     "allergens": ["lait", "œuf", "gluten", "fruits à coque"],
-    "image": "/images/tiramisu-pistache.webp"
+    "image": "/images/pistache.png"
+  },
+  {
+    "name": "Tiramisu aux Biscuits Lotus",
+    "description": "Gourmandise Moderne - Tiramisu Speculoos\nLa rencontre parfaite entre tradition et innovation ! Notre tiramisu revisité aux biscuits Lotus offre une expérience gustative unique. Le caramel biscuité des speculoos se marie divinement avec la douceur du mascarpone, créant un dessert réconfortant aux notes épicées de cannelle.",
+    "price": 38,
+    "allergens": ["lait", "œuf", "gluten"],
+    "image": "/images/speculos.png"
   }
 ] 

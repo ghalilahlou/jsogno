@@ -1,0 +1,224 @@
+{
+  "fr": {
+    "nav": {
+      "home": "Accueil",
+      "menu": "Menu",
+      "story": "Notre Histoire",
+      "contact": "Contact"
+    },
+    "home": {
+      "title": "Sogno - Spécialiste du Tiramisu",
+      "slogan": "Bienvenue chez Sogno, le paradis du tiramisu à Casablanca !",
+      "menu_title": "Notre Menu",
+      "contact_title": "Contact",
+      "visit_title": "Venez nous rendre visite",
+      "visit_subtitle": "Retrouvez-nous au cœur de Casablanca",
+      "visit_address": "123 Rue du Tiramisu, Casablanca",
+      "visit_hours": "Lun-Dim : 10h - 22h",
+      "visit_map": "Voir sur Google Maps",
+      "contact_name": "Votre nom",
+      "contact_email": "Votre email",
+      "contact_message": "Votre message",
+      "contact_send": "Envoyer",
+      "contact_coordinates": "Nos coordonnées",
+      "contact_address": "123 Rue du Tiramisu, Casablanca",
+      "contact_phone": "+212 6 00 00 00 00",
+      "contact_email_address": "contact@sogno.ma",
+      "contact_hours": "Lun-Dim : 10h - 22h",
+      "contact_success": "Merci pour votre message, nous vous répondrons rapidement !",
+      "contact_error": "Tous les champs sont obligatoires.",
+      "intro_title": "Notre Histoire : Une Passion Familiale",
+      "intro_text": "Chez Sogno, chaque tiramisu est une histoire de famille et de passion. Héritiers d'un savoir-faire italien transmis de génération en génération, nous perpétuons la tradition avec des gestes authentiques et des ingrédients soigneusement sélectionnés. Ici, tout est fait maison, avec patience et amour, pour vous offrir un dessert unique, sincère et généreux. Notre promesse ? Un tiramisu qui a du cœur, préparé sans compromis, pour créer des souvenirs gourmands et des moments de bonheur à partager.",
+      "cta_menu": "Voir notre menu"
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "subtitle": "Nous sommes là pour répondre à toutes vos questions et vous accueillir avec le sourire !",
+      "form_title": "Envoyez-nous un message",
+      "name_label": "Votre nom",
+      "name_placeholder": "Entrez votre nom",
+      "email_label": "Votre email",
+      "email_placeholder": "Entrez votre email",
+      "message_label": "Votre message",
+      "message_placeholder": "Décrivez votre demande...",
+      "send_button": "Envoyer le message",
+      "info_title": "Nos coordonnées",
+      "address": "123 Rue du Tiramisu, Casablanca",
+      "phone": "+212 6 00 00 00 00",
+      "email": "contact@sogno.ma",
+      "hours": "Lun-Dim : 10h - 22h",
+      "social_title": "Suivez-nous"
+    },
+    "story": {
+      "title": "Notre Histoire",
+      "subtitle": "Découvrez l'aventure passionnante de Sogno, de ses humbles débuts à sa place de leader du tiramisu à Casablanca",
+      "timeline": {
+        "2018": {
+          "title": "Les débuts d'un rêve",
+          "description": "Tout a commencé dans la petite cuisine de Maria, notre fondatrice. Passionnée par la cuisine italienne, elle a décidé de partager son amour du tiramisu authentique avec les habitants de Casablanca."
+        },
+        "2019": {
+          "title": "Premier magasin",
+          "description": "Grâce au succès de ses tiramisus faits maison, Maria ouvre le premier magasin Sogno dans le cœur de Casablanca. L'accueil est incroyable et les clients affluent déjà."
+        },
+        "2020": {
+          "title": "Expansion et innovation",
+          "description": "Nous développons de nouvelles saveurs tout en gardant l'authenticité de nos recettes. Le tiramisu pistache devient notre deuxième best-seller après le classique."
+        },
+        "2021": {
+          "title": "Reconnaissance",
+          "description": "Sogno reçoit le prix du \"Meilleur Tiramisu de Casablanca\" décerné par l'association des restaurateurs locaux. Une reconnaissance qui nous motive encore plus."
+        },
+        "2022-2023": {
+          "title": "Croissance et communauté",
+          "description": "Notre équipe s'agrandit avec des passionnés de cuisine italienne. Nous créons une véritable communauté autour de notre amour du tiramisu authentique."
+        },
+        "2024": {
+          "title": "L'avenir",
+          "description": "Aujourd'hui, Sogno continue d'innover tout en respectant les traditions. Nous préparons de nouvelles surprises pour nos clients fidèles et nouveaux."
+        }
+      },
+      "values": {
+        "authenticity": {
+          "title": "Authenticité",
+          "description": "Nous respectons les recettes traditionnelles italiennes transmises de génération en génération."
+        },
+        "passion": {
+          "title": "Passion",
+          "description": "Chaque tiramisu est préparé avec amour et attention aux détails pour offrir une expérience unique."
+        },
+        "quality": {
+          "title": "Qualité",
+          "description": "Nous sélectionnons uniquement les meilleurs ingrédients frais et de saison pour nos créations."
+        },
+        "community": {
+          "title": "Communauté",
+          "description": "Nous créons des liens avec nos clients et contribuons à la vie culturelle de Casablanca."
+        }
+      },
+      "team": {
+        "title": "Notre Équipe",
+        "description": "Derrière chaque tiramisu Sogno se cache une équipe passionnée de professionnels dédiés à l'excellence culinaire. De nos pâtissiers expérimentés à notre équipe de service, chacun apporte sa touche personnelle pour créer l'expérience Sogno unique que nos clients adorent."
+      }
+    },
+    "legal": {
+      "title": "Mentions légales",
+      "cgv_title": "Conditions Générales de Vente",
+      "privacy_title": "Politique de confidentialité"
+    },
+    "footer": {
+      "copyright": "Sogno - Spécialiste du Tiramisu"
+    }
+  },
+  "en": {
+    "nav": {
+      "home": "Home",
+      "menu": "Menu",
+      "story": "Our Story",
+      "contact": "Contact"
+    },
+    "home": {
+      "title": "Sogno - Tiramisu Specialist",
+      "slogan": "Welcome to Sogno, the tiramisu paradise in Casablanca!",
+      "menu_title": "Our Menu",
+      "contact_title": "Contact",
+      "visit_title": "Visit Us",
+      "visit_subtitle": "Find Us in the Heart of Casablanca",
+      "visit_address": "123 Tiramisu Street, Casablanca",
+      "visit_hours": "Mon-Sun: 10am - 10pm",
+      "visit_map": "View on Google Maps",
+      "contact_name": "Your name",
+      "contact_email": "Your email",
+      "contact_message": "Your message",
+      "contact_send": "Send",
+      "contact_coordinates": "Our coordinates",
+      "contact_address": "123 Tiramisu Street, Casablanca",
+      "contact_phone": "+212 6 00 00 00 00",
+      "contact_email_address": "contact@sogno.ma",
+      "contact_hours": "Mon-Sun: 10am - 10pm",
+      "contact_success": "Thank you for your message, we will respond quickly!",
+      "contact_error": "All fields are required.",
+      "intro_title": "Our Story: A Family Passion",
+      "intro_text": "At Sogno, every tiramisu is a story of family and passion. Heirs to Italian know-how passed down from generation to generation, we perpetuate tradition with authentic gestures and carefully selected ingredients. Here, everything is homemade, with patience and love, to offer you a unique, sincere and generous dessert. Our promise? A tiramisu made with heart, prepared without compromise, to create gourmet memories and moments of happiness to share.",
+      "cta_menu": "See our menu"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "We are here to answer all your questions and welcome you with a smile!",
+      "form_title": "Send us a message",
+      "name_label": "Your name",
+      "name_placeholder": "Enter your name",
+      "email_label": "Your email",
+      "email_placeholder": "Enter your email",
+      "message_label": "Your message",
+      "message_placeholder": "Describe your request...",
+      "send_button": "Send message",
+      "info_title": "Our contact information",
+      "address": "123 Tiramisu Street, Casablanca",
+      "phone": "+212 6 00 00 00 00",
+      "email": "contact@sogno.ma",
+      "hours": "Mon-Sun: 10am - 10pm",
+      "social_title": "Follow us"
+    },
+    "story": {
+      "title": "Our Story",
+      "subtitle": "Discover the exciting adventure of Sogno, from its humble beginnings to its place as the leading tiramisu shop in Casablanca",
+      "timeline": {
+        "2018": {
+          "title": "The beginning of a dream",
+          "description": "It all started in Maria's small kitchen, our founder. Passionate about Italian cuisine, she decided to share her love of authentic tiramisu with the people of Casablanca."
+        },
+        "2019": {
+          "title": "First store",
+          "description": "Thanks to the success of her homemade tiramisus, Maria opens the first Sogno store in the heart of Casablanca. The welcome is incredible and customers are already flocking."
+        },
+        "2020": {
+          "title": "Expansion and innovation",
+          "description": "We develop new flavors while maintaining the authenticity of our recipes. Pistachio tiramisu becomes our second best-seller after the classic."
+        },
+        "2021": {
+          "title": "Recognition",
+          "description": "Sogno receives the \"Best Tiramisu in Casablanca\" award from the local restaurateurs association. Recognition that motivates us even more."
+        },
+        "2022-2023": {
+          "title": "Growth and community",
+          "description": "Our team grows with Italian cuisine enthusiasts. We create a real community around our love of authentic tiramisu."
+        },
+        "2024": {
+          "title": "The future",
+          "description": "Today, Sogno continues to innovate while respecting traditions. We are preparing new surprises for our loyal and new customers."
+        }
+      },
+      "values": {
+        "authenticity": {
+          "title": "Authenticity",
+          "description": "We respect traditional Italian recipes passed down from generation to generation."
+        },
+        "passion": {
+          "title": "Passion",
+          "description": "Each tiramisu is prepared with love and attention to detail to offer a unique experience."
+        },
+        "quality": {
+          "title": "Quality",
+          "description": "We select only the best fresh and seasonal ingredients for our creations."
+        },
+        "community": {
+          "title": "Community",
+          "description": "We create bonds with our customers and contribute to the cultural life of Casablanca."
+        }
+      },
+      "team": {
+        "title": "Our Team",
+        "description": "Behind every Sogno tiramisu is a passionate team of professionals dedicated to culinary excellence. From our experienced pastry chefs to our service team, each brings their personal touch to create the unique Sogno experience that our customers love."
+      }
+    },
+    "legal": {
+      "title": "Legal Notice",
+      "cgv_title": "Terms and Conditions",
+      "privacy_title": "Privacy Policy"
+    },
+    "footer": {
+      "copyright": "Sogno - Tiramisu Specialist"
+    }
+  }
+} 

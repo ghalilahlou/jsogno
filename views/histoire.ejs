@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="<%= typeof lang !== 'undefined' ? lang : 'fr' %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof t !== 'undefined' && t.story ? t.story.title : 'Notre Histoire - Sogno' %></title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="/js/animations.js" defer></script>
+  <style>
+    /* Palette de couleurs enrichie avec du vert */
+    :root {
+      --bordeaux: #7a3b2e;
+      --bordeaux-dark: #4e2e1e;
+      --beige: #f9f6f2;
+      --beige-light: #fffdf8;
+      --gold: #e6b800;
+      --gold-light: #ffe066;
+      --green: #2d5a27;
+      --green-light: #4a7c59;
+      --green-pale: #e8f5e8;
+      --gray: #444;
+      --gray-light: #888;
+      --white: #fff;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(122,59,46,0.10);
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+      --spacing: 1.5rem;
+    }
+    
+    .histoire-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing);
+    }
+    
+    /* Hero section enrichie */
+    .histoire-hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--bordeaux-dark) 0%, var(--green) 50%, var(--bordeaux) 100%);
+      color: var(--beige);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      animation: heroEntrance 1.5s ease-out;
+    }
+    
+    @keyframes heroEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .histoire-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(230,184,0,0.15)"/><circle cx="75" cy="75" r="1" fill="rgba(45,90,39,0.15)"/><circle cx="50" cy="10" r="0.5" fill="rgba(230,184,0,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.4;
+      animation: grainMove 20s linear infinite;
+    }
+    
+    @keyframes grainMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(100px, 100px); }
+    }
+    
+    .histoire-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .histoire-hero img {
+      width: 120px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      margin-bottom: 1.5rem;
+      background: var(--white);
+      padding: 0.5rem;
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+    
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .histoire-hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--gold), var(--green-pale));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .histoire-hero p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.95;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    
+    /* Timeline enrichie */
+    .histoire-timeline {
+      position: relative;
+      margin: 4rem 0;
+      padding: 2rem 0;
+    }
+    
+    .histoire-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: linear-gradient(to bottom, var(--gold), var(--green-light), var(--bordeaux));
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px rgba(230,184,0,0.4);
+      border-radius: 3px;
+    }
+    
+    .timeline-item {
+      display: flex;
+      margin: 3rem 0;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+    }
+    
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    
+    .timeline-content {
+      width: 45%;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      border: 2px solid transparent;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+    
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(45deg, var(--green-pale), var(--beige-light));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+    
+    .timeline-content:hover::before {
+      opacity: 1;
+    }
+    
+    .timeline-content:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(45,90,39,0.2);
+      border-color: var(--green-light);
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: 5%;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: 5%;
+    }
+    
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 24px;
+      background: var(--green);
+      border-radius: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 20px rgba(45,90,39,0.6);
+      border: 4px solid var(--white);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after {
+      right: -62px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -62px;
+    }
+    
+    .timeline-content:hover::after {
+      background: var(--gold);
+      transform: translateY(-50%) scale(1.2);
+      box-shadow: 0 0 30px rgba(230,184,0,0.8);
+    }
+    
+    .timeline-year {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      position: relative;
+    }
+    
+    .timeline-year::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      border-radius: 2px;
+    }
+    
+    .timeline-title {
+      font-size: 1.6rem;
+      color: var(--bordeaux-dark);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .timeline-description {
+      line-height: 1.8;
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+    
+    /* Section valeurs enrichie */
+    .histoire-values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+    
+    .value-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .value-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(45,90,39,0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .value-card:hover::before {
+      left: 100%;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 25px 80px rgba(45,90,39,0.25);
+      border-color: var(--green-light);
+    }
+    
+    .value-icon {
+      font-size: 4.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      display: block;
+    }
+    
+    .value-card:nth-child(1) .value-icon { color: var(--gold); }
+    .value-card:nth-child(2) .value-icon { color: var(--bordeaux); }
+    .value-card:nth-child(3) .value-icon { color: var(--green); }
+    .value-card:nth-child(4) .value-icon { color: var(--gold-light); }
+    
+    .value-card:hover .value-icon {
+      transform: scale(1.3) rotate(10deg);
+    }
+    
+    .value-title {
+      font-size: 2rem;
+      color: var(--bordeaux-dark);
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+    
+    .value-description {
+      color: var(--gray);
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+    
+    /* Section équipe enrichie */
+    .histoire-team {
+      text-align: center;
+      margin: 4rem 0;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, var(--green-pale) 0%, var(--beige-light) 50%, var(--green-pale) 100%);
+      border-radius: var(--radius);
+      color: var(--bordeaux-dark);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--green-light);
+    }
+    
+    .histoire-team::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(45,90,39,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(230,184,0,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(45,90,39,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .histoire-team-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .histoire-team h2 {
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--green), var(--bordeaux));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .histoire-team p {
+      font-size: 1.4rem;
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+    
+    /* Grille équipe */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .team-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(45,90,39,0.2);
+      border-color: var(--green-light);
+    }
+    
+    .team-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem auto;
+      display: block;
+      border: 4px solid var(--green-light);
+      transition: all 0.3s ease;
+    }
+    
+    .team-card:hover .team-photo {
+      transform: scale(1.1);
+      border-color: var(--gold);
+    }
+    
+    .team-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--bordeaux-dark);
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .team-role {
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .team-quote {
+      font-style: italic;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .histoire-timeline::before {
+        left: 20px;
+      }
+      
+      .timeline-item {
+        flex-direction: column !important;
+      }
+      
+      .timeline-content {
+        width: 100%;
+        margin: 0 0 0 50px !important;
+      }
+      
+      .timeline-content::after {
+        left: -45px !important;
+      }
+      
+      .histoire-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .histoire-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .histoire-team h2 {
+        font-size: 2.5rem;
+      }
+      
+      .histoire-team p {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .histoire-container {
+        padding: 1rem;
+      }
+      
+      .histoire-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .timeline-content {
+        padding: 1.5rem;
+      }
+      
+      .value-card {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/header') %>
+  
+  <main class="histoire-container">
+    <!-- Hero Section -->
+    <section class="histoire-hero">
+      <div class="histoire-hero-content">
+        <img src="/images/songo.jpeg" alt="Logo Sogno">
+        <h1><%= typeof t !== 'undefined' && t.story ? t.story.title : 'Notre Histoire' %></h1>
+        <p><%= typeof t !== 'undefined' && t.story ? t.story.subtitle : "Découvrez l'aventure passionnante de Sogno, de ses humbles débuts à sa place de leader du tiramisu à Casablanca" %></p>
+      </div>
+    </section>
+    
+    <!-- Timeline enrichie -->
+    <div class="histoire-timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-title"><%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2018'] ? t.story.timeline['2018'].title : 'Les débuts d\'un rêve' %></div>
+          <div class="timeline-description">
+            <%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2018'] ? t.story.timeline['2018'].description : 'Tout a commencé dans la petite cuisine de Maria, notre fondatrice. Passionnée par la cuisine italienne, elle a décidé de partager son amour du tiramisu authentique avec les habitants de Casablanca. Chaque recette était un secret de famille transmis avec amour.' %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-title"><%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2019'] ? t.story.timeline['2019'].title : 'Premier magasin' %></div>
+          <div class="timeline-description">
+            <%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2019'] ? t.story.timeline['2019'].description : 'Grâce au succès de ses tiramisus faits maison, Maria ouvre le premier magasin Sogno dans le cœur de Casablanca. L\'accueil est incroyable et les clients affluent déjà. L\'odeur du café et du mascarpone frais attire les passants.' %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-title"><%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2020'] ? t.story.timeline['2020'].title : 'Expansion et innovation' %></div>
+          <div class="timeline-description">
+            <%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2020'] ? t.story.timeline['2020'].description : 'Nous développons de nouvelles saveurs tout en gardant l\'authenticité de nos recettes. Le tiramisu pistache devient notre deuxième best-seller après le classique. Nous introduisons aussi des ingrédients locaux de qualité.' %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2021</div>
+          <div class="timeline-title"><%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2021'] ? t.story.timeline['2021'].title : 'Reconnaissance' %></div>
+          <div class="timeline-description">
+            <%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2021'] ? t.story.timeline['2021'].description : 'Sogno reçoit le prix du "Meilleur Tiramisu de Casablanca" décerné par l\'association des restaurateurs locaux. Une reconnaissance qui nous motive encore plus à maintenir l\'excellence de nos créations.' %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2022-2023</div>
+          <div class="timeline-title"><%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2022-2023'] ? t.story.timeline['2022-2023'].title : 'Croissance et communauté' %></div>
+          <div class="timeline-description">
+            <%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2022-2023'] ? t.story.timeline['2022-2023'].description : 'Notre équipe s\'agrandit avec des passionnés de cuisine italienne. Nous créons une véritable communauté autour de notre amour du tiramisu authentique. Nos ateliers culinaires rencontrent un succès fou.' %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-title"><%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2024'] ? t.story.timeline['2024'].title : 'L\'avenir' %></div>
+          <div class="timeline-description">
+            <%= typeof t !== 'undefined' && t.story && t.story.timeline && t.story.timeline['2024'] ? t.story.timeline['2024'].description : 'Aujourd\'hui, Sogno continue d\'innover tout en respectant les traditions. Nous préparons de nouvelles surprises pour nos clients fidèles et nouveaux. L\'aventure ne fait que commencer !' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Valeurs enrichies -->
+    <div class="histoire-values">
+      <div class="value-card">
+        <div class="value-icon">🍰</div>
+        <div class="value-title"><%= typeof t !== 'undefined' && t.story && t.story.values && t.story.values.authenticity ? t.story.values.authenticity.title : 'Authenticité' %></div>
+        <div class="value-description">
+          <%= typeof t !== 'undefined' && t.story && t.story.values && t.story.values.authenticity ? t.story.values.authenticity.description : 'Nous respectons les recettes traditionnelles italiennes transmises de génération en génération. Chaque geste compte pour préserver l\'essence même du tiramisu authentique.' %>
+        </div>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">❤️</div>
+        <div class="value-title"><%= typeof t !== 'undefined' && t.story && t.story.values && t.story.values.passion ? t.story.values.passion.title : 'Passion' %></div>
+        <div class="value-description">
+          <%= typeof t !== 'undefined' && t.story && t.story.values && t.story.values.passion ? t.story.values.passion.description : 'Chaque tiramisu est préparé avec amour et attention aux détails pour offrir une expérience unique. La passion est notre moteur quotidien.' %>
+        </div>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <div class="value-title"><%= typeof t !== 'undefined' && t.story && t.story.values && t.story.values.quality ? t.story.values.quality.title : 'Qualité' %></div>
+        <div class="value-description">
+          <%= typeof t !== 'undefined' && t.story && t.story.values && t.story.values.quality ? t.story.values.quality.description : 'Nous sélectionnons uniquement les meilleurs ingrédients frais et de saison pour nos créations. La qualité est non-négociable chez Sogno.' %>
+        </div>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-title"><%= typeof t !== 'undefined' && t.story && t.story.values && t.story.values.community ? t.story.values.community.title : 'Communauté' %></div>
+        <div class="value-description">
+          <%= typeof t !== 'undefined' && t.story && t.story.values && t.story.values.community ? t.story.values.community.description : 'Nous créons des liens avec nos clients et contribuons à la vie culturelle de Casablanca. Chaque client fait partie de notre grande famille Sogno.' %>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Équipe enrichie -->
+    <div class="histoire-team">
+      <div class="histoire-team-content">
+        <h2><%= typeof t !== 'undefined' && t.story && t.story.team ? t.story.team.title : 'Notre Équipe' %></h2>
+        <p><%= typeof t !== 'undefined' && t.story && t.story.team ? t.story.team.description : 'Une équipe passionnée qui partage la même vision : créer les meilleurs tiramisus de Casablanca avec amour et authenticité.' %></p>
+        
+        <div class="team-grid">
+          <div class="team-card">
+            <img src="/images/songo.jpeg" alt="Maria Rossi, Fondatrice" class="team-photo">
+            <div class="team-name">Maria Rossi</div>
+            <div class="team-role">Fondatrice & Cheffe Pâtissière</div>
+            <div class="team-quote">"La passion du tiramisu, c'est toute ma vie."</div>
+          </div>
+          
+          <div class="team-card">
+            <img src="/images/songo.jpeg" alt="Ahmed Benali, Chef Pâtissier" class="team-photo">
+            <div class="team-name">Ahmed Benali</div>
+            <div class="team-role">Chef Pâtissier</div>
+            <div class="team-quote">"Chaque tiramisu raconte une histoire."</div>
+          </div>
+          
+          <div class="team-card">
+            <img src="/images/songo.jpeg" alt="Fatima Zahra, Service Client" class="team-photo">
+            <div class="team-name">Fatima Zahra</div>
+            <div class="team-role">Service Client</div>
+            <div class="team-quote">"Le sourire de nos clients est notre plus belle récompense."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <%- include('partials/footer') %>
+  
+  <script>
+    // Animation de la timeline au scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      const valueCards = document.querySelectorAll('.value-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 200);
+          }
+        });
+      }, {
+        threshold: 0.3,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      timelineItems.forEach(item => observer.observe(item));
+      valueCards.forEach(card => observer.observe(card));
+    });
+  </script>
+</body>
+</html> 
